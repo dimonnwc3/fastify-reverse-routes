@@ -1,0 +1,83 @@
+{
+  "name": "fastify-reverse-routes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimonnwc3/fastify-reverse-routes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dimonnwc3/fastify-reverse-routes/issues"
+  },
+  "homepage": "https://github.com/dimonnwc3/fastify-reverse-routes#readme",
+  "keywords": [
+    "fastify",
+    "reverse",
+    "router",
+    "reverse-routes",
+    "named-routes"
+  ],
+  "author": "Dmitrii Solovev <dimonnwc3@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint \"**/*.js\"",
+    "format": "prettier --write \"**/*.js\"",
+    "test": "jest --coverage --verbose",
+    "test:watch": "jest --watch"
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "all"
+  },
+  "jest": {
+    "bail": true,
+    "verbose": true,
+    "testEnvironment": "node",
+    "coverageReporters": [
+      "text"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "eslint",
+      "jest",
+      "git add"
+    ]
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "standard",
+      "prettier"
+    ],
+    "env": {
+      "jest": true,
+      "node": true
+    }
+  },
+  "dependencies": {
+    "fastify-plugin": "^1.6.0",
+    "path-to-regexp": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "fastify": "^2.6.0",
+    "husky": "^2.7.0",
+    "jest": "^24.8.0",
+    "lint-staged": "^8.2.1",
+    "prettier": "^1.18.2"
+  }
+}
