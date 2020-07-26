@@ -25,7 +25,7 @@ Add it to your project with `register` and you are done!
 ```js
 const fastify = require("fastify")()
 
-fastify.register(require("fastify-reverse-routes"))
+fastify.register(require("fastify-reverse-routes").plugin)
 
 fastify.route({
   url: "/frameworks/:name",
