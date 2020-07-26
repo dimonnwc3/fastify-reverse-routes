@@ -1,5 +1,5 @@
 const Fastify = require("fastify")
-const fastifyReverseRoutes = require("./index")
+const reverse = require("./index")
 
 let fastify
 
@@ -13,7 +13,7 @@ afterEach(async () => {
 
 describe("Reverse routes", () => {
   it("Add reverse method", async () => {
-    await fastify.register(fastifyReverseRoutes).ready()
+    await fastify.register(reverse.plugin).ready()
 
     expect(fastify.reverse).toBeDefined()
     expect(typeof fastify.reverse).toBe("function")
@@ -21,7 +21,7 @@ describe("Reverse routes", () => {
 
   it("Reverse pattern to path", async () => {
     await fastify
-      .register(fastifyReverseRoutes)
+      .register(reverse.plugin)
       .route({
         url: "/frameworks/:name",
         method: "GET",
@@ -33,12 +33,16 @@ describe("Reverse routes", () => {
     expect(fastify.reverse("frameworks", { name: "fastify" })).toBe(
       "/frameworks/fastify",
     )
+
+    expect(reverse("frameworks", { name: "fastify" })).toBe(
+      "/frameworks/fastify",
+    )
   })
 
   it("Plugin throws for duplicated routes", async () => {
     try {
       await fastify
-        .register(fastifyReverseRoutes)
+        .register(reverse.plugin)
         .route({
           url: "/frameworks/:name",
           method: "GET",
@@ -59,7 +63,7 @@ describe("Reverse routes", () => {
 
   it("Reverse throws for non registered route", async () => {
     await fastify
-      .register(fastifyReverseRoutes)
+      .register(reverse.plugin)
       .route({
         url: "/frameworks/:name",
         method: "GET",
@@ -68,7 +72,7 @@ describe("Reverse routes", () => {
       .ready()
 
     expect(() => {
-      expect(fastify.reverse("frameworks", { name: "fastify" })).toBe(
+      expect(fastify.reverse("books", { name: "fastify" })).toBe(
         "/frameworks/fastify",
       )
     }).toThrow()

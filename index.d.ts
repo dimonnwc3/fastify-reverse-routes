@@ -1,7 +1,12 @@
 import * as fastify from "fastify"
 import { Server, IncomingMessage, ServerResponse } from "http"
+import { PathFunction } from "path-to-regexp"
 
-declare const reverse: fastify.Plugin<
+declare const routes: Map<string, PathFunction<object>>
+
+declare function reverse<Args>(name: string, args?: Args): string
+
+declare const plugin: fastify.Plugin<
   Server,
   IncomingMessage,
   ServerResponse,
@@ -19,3 +24,4 @@ declare module "fastify" {
 }
 
 export default reverse
+export { plugin, routes }
