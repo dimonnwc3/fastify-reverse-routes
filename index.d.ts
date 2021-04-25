@@ -1,5 +1,5 @@
 import * as fastify from "fastify"
-import { Server, IncomingMessage, ServerResponse } from "http"
+import { IncomingMessage, Server, ServerResponse } from "http"
 import { PathFunction } from "path-to-regexp"
 
 declare const routes: Map<string, PathFunction<object>>
